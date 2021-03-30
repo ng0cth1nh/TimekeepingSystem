@@ -43,6 +43,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,12 +53,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dao\AdminDao.cs" />
+    <Compile Include="EntityFramework\Admin.cs" />
+    <Compile Include="EntityFramework\AttendanceDaily.cs" />
+    <Compile Include="EntityFramework\AttendanceMonthly.cs" />
+    <Compile Include="EntityFramework\Color.cs" />
+    <Compile Include="EntityFramework\CompleteTag.cs" />
+    <Compile Include="EntityFramework\CompleteTagDetail.cs" />
+    <Compile Include="EntityFramework\Employee.cs" />
+    <Compile Include="EntityFramework\EmployeeRole.cs" />
+    <Compile Include="EntityFramework\EmployeeType.cs" />
+    <Compile Include="EntityFramework\Product.cs" />
+    <Compile Include="EntityFramework\Size.cs" />
+    <Compile Include="EntityFramework\Step.cs" />
+    <Compile Include="EntityFramework\Tag.cs" />
+    <Compile Include="EntityFramework\TimekeepingDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Dao\" />
-    <Folder Include="EntityFramework\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
