@@ -6,12 +6,13 @@ using System.Web.Mvc;
 
 namespace TimekeepingSystem.Controllers
 {
-    public class HomeController : Controller
+    public class RecordAttendanceController : Controller
     {
+        // GET: RecordAttendance
+     
         public ActionResult Index()
         {
             return View();
         }
-
     }
 }
