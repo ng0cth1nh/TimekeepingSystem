@@ -1,0 +1,11 @@
+﻿.attend-radio{
+    display: block !important;
+}
+.absent-note{
+    width: 100%;
+}
+.button-container {
+    display: flex;
+    margin-top: 10px;
+    justify-content: flex-end;
+}
