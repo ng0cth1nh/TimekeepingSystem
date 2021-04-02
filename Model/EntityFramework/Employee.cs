@@ -25,7 +25,7 @@ namespace Model.EntityFramework
         public bool Gender { get; set; }
 
         [Column(TypeName = "date")]
-        public DateTime DateOfJoin { get; set; }
+        public DateTime DateJoin { get; set; }
 
         public int RoleID { get; set; }
 

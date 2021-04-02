@@ -15,7 +15,7 @@ namespace Model.EntityFramework
             AttendanceDailies = new HashSet<AttendanceDaily>();
         }
 
-        public int ID { get; set; }
+        public int? ID { get; set; }
 
         [Column(TypeName = "date")]
         public DateTime FromDate { get; set; }

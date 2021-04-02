@@ -16,6 +16,7 @@ namespace Model.EntityFramework
         public virtual DbSet<AttendanceDaily> AttendanceDailies { get; set; }
         public virtual DbSet<AttendanceMonthly> AttendanceMonthlies { get; set; }
         public virtual DbSet<Color> Colors { get; set; }
+        public virtual DbSet<CompleteTag> CompleteTags { get; set; }
         public virtual DbSet<CompleteTagDetail> CompleteTagDetails { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<EmployeeRole> EmployeeRoles { get; set; }
@@ -24,9 +25,7 @@ namespace Model.EntityFramework
         public virtual DbSet<ProductDetail> ProductDetails { get; set; }
         public virtual DbSet<Size> Sizes { get; set; }
         public virtual DbSet<Step> Steps { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Tag> Tags { get; set; }
-        public virtual DbSet<CompleteTag> CompleteTags { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -64,7 +63,17 @@ namespace Model.EntityFramework
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Product>()
+                .HasMany(e => e.CompleteTags)
+                .WithRequired(e => e.Product)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Product>()
                 .HasMany(e => e.ProductDetails)
+                .WithRequired(e => e.Product)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Product>()
+                .HasMany(e => e.Tags)
                 .WithRequired(e => e.Product)
                 .WillCascadeOnDelete(false);
 
@@ -84,18 +93,14 @@ namespace Model.EntityFramework
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Tag>()
-                .HasMany(e => e.CompleteTagDetails)
-                .WithRequired(e => e.Tag)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Tag>()
                 .HasMany(e => e.CompleteTags)
                 .WithRequired(e => e.Tag)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<CompleteTag>()
-                .Property(e => e.Table)
-                .IsFixedLength();
+            modelBuilder.Entity<Tag>()
+                .HasMany(e => e.CompleteTagDetails)
+                .WithRequired(e => e.Tag)
+                .WillCascadeOnDelete(false);
         }
     }
 }

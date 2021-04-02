@@ -9,18 +9,16 @@ namespace Model.EntityFramework
     [Table("Admin")]
     public partial class Admin
     {
-        public int ID { get; set; }
-
-        [Required]
-        [StringLength(100)]
-        public string Name { get; set; }
-
-        [Required]
-        [StringLength(50)]
+        [Key]
+        [StringLength(10)]
         public string UserName { get; set; }
 
         [Required]
         [StringLength(50)]
         public string Password { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string Name { get; set; }
     }
 }

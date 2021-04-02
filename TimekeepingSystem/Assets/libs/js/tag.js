@@ -81,40 +81,73 @@ function init() {
     });
 }
 
-$("#btnSubmit").on("click", submitTag);
+$("#btnSubmit").on("click", function () {
+    if (submitCompleteTag() && submitCompleteTagDetail()) {
+        alert("Save Successfully");
+    } else {
+        alert("Save Failed");
+    };
+});
 
-function submitTag() {
-    let employees = $(".employee");
+function submitCompleteTagDetail() {
+
+    let steps = $(".step");
     let arr = [];
-    for (let i = 0; i < employees.length; i++) {
-        let id = parseInt($(`.employee:eq(${i}) td:eq(0)`).text(), 10);
-        let present = $(`input[name=${id}]:checked`).val();
-        let ispresent = false;
-        if (present == "1") {
-            ispresent = true;
+
+    for (let i = 0; i < steps.length; i++) {
+        let completeTagDetail = {
+            TagID: parseInt($("#tag-input").val(), 10),
+            StepID: parseInt($(`.step:eq(${i})`).parent("td").prev().text(), 10),
+            EmployeeID: parseInt($(`.step:eq(${i})`).val(),10)
         }
-        let note = $(`input[name=absentNode${id}]`).val();
-        let record = {
-            EmployeeID: id,
-            IsPresent: ispresent,
-            Note: note
-        }
-        arr.push(record);
+        arr.push(completeTagDetail);
     }
 
     $.ajax({
-        url: '/RecordAttendance/SaveRecordAttendance',
+        url: '/AddTag/SaveCompleteTagDetail',
         data: {
-            record: JSON.stringify(arr)
+            record: JSON.stringify(completeTag)
         },
         type: 'POST',
         dataType: 'json',
         success: function (response) {
             if (response.status == true) {
-                $("#btnSubmit").text("Update");
-                alert("Submit Successfully!");
+                return true;
             } else {
-                alert(response.message);
+                return false;
+            }
+        },
+        error: function (err) {
+            console.log(err);
+        }
+    });
+
+}
+
+function submitCompleteTag() {
+    let completeTag = {
+        TagID: parseInt($("#tag-input").val(), 10),
+        Table: $("#table").val(),
+        ProductID: parseInt($("#productID").text(), 10),
+        Quantity: parseInt($("#quantity").text(), 10),
+        CompleteQuantity: parseInt($("#complete").text(), 10)
+    }
+
+    $.ajax({
+        url: '/AddTag/SaveCompleteTag',
+        data: {
+            record: JSON.stringify(completeTag)
+        },
+        type: 'POST',
+        dataType: 'json',
+        success: function (response) {
+            if (response.status == true) {
+                //$("#btnSubmit").text("Update");
+                //alert("Submit Successfully!");
+                return true;
+            } else {
+                //alert(response.message);
+                return false;
             }
         },
         error: function (err) {

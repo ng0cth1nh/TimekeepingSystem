@@ -29,7 +29,6 @@ namespace TimekeepingSystem.Controllers
                     var user = dao.GetByUserName(model.UserName);
                     var userSession = new UserLogin();
                     userSession.UserName = user.UserName;
-                    userSession.UserID = user.ID;
                     userSession.Name = user.Name;
 
                     Session.Add(CommonConstants.USER_SESSION, userSession);

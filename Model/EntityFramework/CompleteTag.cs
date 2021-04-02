@@ -9,34 +9,30 @@ namespace Model.EntityFramework
     [Table("CompleteTag")]
     public partial class CompleteTag
     {
-        [Key]
-        [Column(Order = 0)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ID { get; set; }
 
         [Key]
-        [Column(Order = 1)]
-        [StringLength(10)]
+        [Column(Order = 0)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int TagID { get; set; }
+
+        [Required]
+        [StringLength(50)]
         public string Table { get; set; }
 
-        [Key]
-        [Column(Order = 2, TypeName = "date")]
+        [Column(TypeName = "date")]
         public DateTime Date { get; set; }
 
         [Key]
-        [Column(Order = 3)]
+        [Column(Order = 1)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ProductID { get; set; }
 
-        [Key]
-        [Column(Order = 4)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Quantity { get; set; }
 
-        [Key]
-        [Column(Order = 5)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int ErrorQuantity { get; set; }
+        public int CompleteQuantity { get; set; }
+
+        public virtual Product Product { get; set; }
 
         public virtual Tag Tag { get; set; }
     }

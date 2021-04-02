@@ -9,17 +9,16 @@ namespace Model.EntityFramework
     [Table("ProductDetail")]
     public partial class ProductDetail
     {
-        [Key]
-        [Column(Order = 0)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
         [Key]
-        [Column(Order = 1)]
+        [Column(Order = 0)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ProductID { get; set; }
 
         [Key]
-        [Column(Order = 2)]
+        [Column(Order = 1)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int StepID { get; set; }
 

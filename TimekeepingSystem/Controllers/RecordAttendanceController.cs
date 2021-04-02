@@ -59,10 +59,10 @@ namespace TimekeepingSystem.Controllers
             bool status = false;
             string message = string.Empty;
 
-            DateTime date = DateTime.Today;
+            DateTime date = DateTime.Now;
             //var monthID;
 
-            var today = DateTime.Today;
+           // var today = DateTime.Today;
           //  var month = new DateTime(today.Year, today.Month, 1);
             var firstDayOfMonth = new DateTime(date.Year, date.Month, 1);
             var lastDayOfMonth = firstDayOfMonth.AddMonths(1).AddDays(-1);
@@ -71,40 +71,17 @@ namespace TimekeepingSystem.Controllers
             {
                 
                 context.AttendanceMonthlies.Add(new AttendanceMonthly() { FromDate = firstDayOfMonth, ToDate = lastDayOfMonth });
+                    context.SaveChanges();
             }
-
-            ///var month = context.AttendanceMonthlies
-            //                     .Where(d => d.ToDate == new DateTime(date.Year, date.Month, DateTime.DaysInMonth(date.Year, date.Month)))
-            //                   .Select(;
-
-            //  var month = (from d in context.AttendanceMonthlies
-            //      where d.ToDate == new DateTime(date.Year, date.Month, DateTime.DaysInMonth(date.Year, date.Month))
-            //      select new Month{ 
-            //       ID = d.ID 
-            //     });
-            //var month = from d in context.AttendanceMonthlies
-            //            where d.ToDate == new DateTime(date.Year, date.Month, DateTime.DaysInMonth(date.Year, date.Month))
-            //            select new Month {
-            //                ID = d.ID
-            //            };
-            //DateTime d = new DateTime(date.Year, date.Month, DateTime.DaysInMonth(date.Year, date.Month));
            
 
             var month = context.AttendanceMonthlies.FirstOrDefault(d => d.ToDate == lastDayOfMonth);
 
-            //var monthID = context.AttendanceMonthlies.Where(m => m.ToDate == new DateTime(date.Year, date.Month, DateTime.DaysInMonth(date.Year, date.Month)))
-            //     .Select(m => m.ID);
-
-                       //month.Select("id");
-         //   int k = month.First().ID;
-  //          Console.WriteLine(month2.FromDate.Day);
-            //int i = 1;
-            // context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT [dbo].[AttendanceDaily] OFF");
             foreach (var ad in ads)
             {
-               // ad.ID = null;
+                ad.ID = null;
                 ad.Date = date;
-                ad.MonthID = month.ID;
+                ad.MonthID = (int) month.ID;
                 context.AttendanceDailies.Add(ad);
             }
             try

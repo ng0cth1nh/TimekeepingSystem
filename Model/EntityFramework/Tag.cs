@@ -12,8 +12,8 @@ namespace Model.EntityFramework
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Tag()
         {
-            CompleteTagDetails = new HashSet<CompleteTagDetail>();
             CompleteTags = new HashSet<CompleteTag>();
+            CompleteTagDetails = new HashSet<CompleteTagDetail>();
         }
 
         public int ID { get; set; }
@@ -23,9 +23,11 @@ namespace Model.EntityFramework
         public int Quantity { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CompleteTagDetail> CompleteTagDetails { get; set; }
+        public virtual ICollection<CompleteTag> CompleteTags { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CompleteTag> CompleteTags { get; set; }
+        public virtual ICollection<CompleteTagDetail> CompleteTagDetails { get; set; }
+
+        public virtual Product Product { get; set; }
     }
 }

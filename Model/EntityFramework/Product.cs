@@ -12,13 +12,15 @@ namespace Model.EntityFramework
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Product()
         {
+            CompleteTags = new HashSet<CompleteTag>();
             ProductDetails = new HashSet<ProductDetail>();
+            Tags = new HashSet<Tag>();
         }
 
         public int ID { get; set; }
 
         [Required]
-        [StringLength(100)]
+        [StringLength(50)]
         public string Name { get; set; }
 
         public int SizeID { get; set; }
@@ -27,9 +29,15 @@ namespace Model.EntityFramework
 
         public virtual Color Color { get; set; }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CompleteTag> CompleteTags { get; set; }
+
         public virtual Size Size { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductDetail> ProductDetails { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tag> Tags { get; set; }
     }
 }

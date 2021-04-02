@@ -67,7 +67,6 @@
     <Compile Include="EntityFramework\ProductDetail.cs" />
     <Compile Include="EntityFramework\Size.cs" />
     <Compile Include="EntityFramework\Step.cs" />
-    <Compile Include="EntityFramework\sysdiagram.cs" />
     <Compile Include="EntityFramework\Tag.cs" />
     <Compile Include="EntityFramework\TagInfor.cs" />
     <Compile Include="EntityFramework\TimekeepingDbContext.cs" />

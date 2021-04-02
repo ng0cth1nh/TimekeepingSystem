@@ -6,6 +6,7 @@ namespace Model.EntityFramework
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
+    [Table("Step")]
     public partial class Step
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -17,8 +18,7 @@ namespace Model.EntityFramework
 
         public int ID { get; set; }
 
-        [Required]
-        [StringLength(100)]
+        [StringLength(50)]
         public string Name { get; set; }
 
         public int Price { get; set; }
