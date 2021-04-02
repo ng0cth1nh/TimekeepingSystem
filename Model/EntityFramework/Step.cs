@@ -12,7 +12,7 @@ namespace Model.EntityFramework
         public Step()
         {
             CompleteTagDetails = new HashSet<CompleteTagDetail>();
-            Products = new HashSet<Product>();
+            ProductDetails = new HashSet<ProductDetail>();
         }
 
         public int ID { get; set; }
@@ -27,6 +27,6 @@ namespace Model.EntityFramework
         public virtual ICollection<CompleteTagDetail> CompleteTagDetails { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<ProductDetail> ProductDetails { get; set; }
     }
 }

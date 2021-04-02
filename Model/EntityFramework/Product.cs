@@ -12,7 +12,7 @@ namespace Model.EntityFramework
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Product()
         {
-            Steps = new HashSet<Step>();
+            ProductDetails = new HashSet<ProductDetail>();
         }
 
         public int ID { get; set; }
@@ -30,6 +30,6 @@ namespace Model.EntityFramework
         public virtual Size Size { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Step> Steps { get; set; }
+        public virtual ICollection<ProductDetail> ProductDetails { get; set; }
     }
 }

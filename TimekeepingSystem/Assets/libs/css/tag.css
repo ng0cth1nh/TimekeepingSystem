@@ -1,0 +1,24 @@
+﻿#Tag-Header{
+    display:flex;
+}
+.tag-container{
+    margin-right: 50px;
+}
+
+.tag-item {
+    display: flex;
+    justify-content:end;
+    align-items:center;
+}
+
+.card-header{
+    min-width:118px;
+}
+#tag-input,#btnSearch{
+    margin: 10px;
+}
+#btnSubmit {
+    margin-top: 10px;
+    margin-left: 300px;
+    width: 150px;
+}

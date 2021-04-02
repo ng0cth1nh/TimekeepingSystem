@@ -64,17 +64,23 @@
     <Compile Include="EntityFramework\EmployeeRole.cs" />
     <Compile Include="EntityFramework\EmployeeType.cs" />
     <Compile Include="EntityFramework\Product.cs" />
+    <Compile Include="EntityFramework\ProductDetail.cs" />
     <Compile Include="EntityFramework\Size.cs" />
     <Compile Include="EntityFramework\Step.cs" />
+    <Compile Include="EntityFramework\sysdiagram.cs" />
     <Compile Include="EntityFramework\Tag.cs" />
+    <Compile Include="EntityFramework\TagInfor.cs" />
     <Compile Include="EntityFramework\TimekeepingDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

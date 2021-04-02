@@ -9,9 +9,9 @@ namespace Model.EntityFramework
     [Table("AttendanceDaily")]
     public partial class AttendanceDaily
     {
-        [Key]
-        [Column(Order = 0)]
-        public int ID { get; set; }
+        //[Key]
+        //[Column(Order = 0)]
+        //public int ID { get; set; }
 
         [Key]
         [Column(Order = 1)]

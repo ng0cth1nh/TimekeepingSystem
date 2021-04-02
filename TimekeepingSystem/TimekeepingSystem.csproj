@@ -129,6 +129,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Common\CommonConstants.cs" />
     <Compile Include="Common\UserLogin.cs" />
+    <Compile Include="Controllers\AddTagController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -176,6 +177,7 @@
     <Content Include="Assets\images\switch.png" />
     <Content Include="Assets\libs\css\index.css" />
     <Content Include="Assets\libs\css\style.css" />
+    <Content Include="Assets\libs\css\tag.css" />
     <Content Include="Assets\libs\js\dashboard-ecommerce.js" />
     <Content Include="Assets\libs\js\dashboard-finance.js" />
     <Content Include="Assets\libs\js\dashboard-influencer.js" />
@@ -185,6 +187,7 @@
     <Content Include="Assets\libs\js\jvectormap.custom.js" />
     <Content Include="Assets\libs\js\main-js.js" />
     <Content Include="Assets\libs\js\recordAttend.js" />
+    <Content Include="Assets\libs\js\tag.js" />
     <Content Include="Assets\vendor\bootstrap-colorpicker\%40claviska\jquery-minicolors\jquery.minicolors.css" />
     <Content Include="Assets\vendor\bootstrap-colorpicker\%40claviska\jquery-minicolors\jquery.minicolors.min.js" />
     <Content Include="Assets\vendor\bootstrap-colorpicker\%40claviska\jquery-minicolors\jquery.minicolors.png" />
@@ -602,6 +605,7 @@
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Logout\Index.cshtml" />
     <Content Include="Views\RecordAttendance\Index.cshtml" />
+    <Content Include="Views\AddTag\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

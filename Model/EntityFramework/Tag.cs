@@ -13,6 +13,7 @@ namespace Model.EntityFramework
         public Tag()
         {
             CompleteTagDetails = new HashSet<CompleteTagDetail>();
+            CompleteTags = new HashSet<CompleteTag>();
         }
 
         public int ID { get; set; }
@@ -21,9 +22,10 @@ namespace Model.EntityFramework
 
         public int Quantity { get; set; }
 
-        public virtual CompleteTag CompleteTag { get; set; }
-
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CompleteTagDetail> CompleteTagDetails { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CompleteTag> CompleteTags { get; set; }
     }
 }

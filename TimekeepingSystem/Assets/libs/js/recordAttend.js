@@ -42,13 +42,18 @@ function loadTableEmployee() {
     });
 }
 
+$("#btnSubmit").on("click", submitAttendance);
 
 function submitAttendance (){
     let employees = $(".employee");
     let arr = [];
     for (let i = 0; i < employees.length; i++) {
-        let id = $(`.employee:eq(${i}) td:eq(0)`).text();
-        let ispresent = $(`input[name=${id}]:checked`).val();
+        let id = parseInt($(`.employee:eq(${i}) td:eq(0)`).text(),10);
+        let present = $(`input[name=${id}]:checked`).val();
+        let ispresent = false;
+        if (present == "1") {
+            ispresent = true;
+        }
         let note = $(`input[name=absentNode${id}]`).val();
         let record = {
             EmployeeID: id,

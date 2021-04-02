@@ -34,6 +34,11 @@ namespace TimekeepingSystem
           );
 
             routes.MapRoute(
+             name: "AddTag",
+             url: "add-tag",
+             defaults: new { controller = "AddTag", action = "Index" }
+         );
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

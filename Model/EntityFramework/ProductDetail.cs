@@ -6,8 +6,8 @@ namespace Model.EntityFramework
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("CompleteTagDetail")]
-    public partial class CompleteTagDetail
+    [Table("ProductDetail")]
+    public partial class ProductDetail
     {
         [Key]
         [Column(Order = 0)]
@@ -16,16 +16,15 @@ namespace Model.EntityFramework
         [Key]
         [Column(Order = 1)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int TagID { get; set; }
+        public int ProductID { get; set; }
 
+        [Key]
+        [Column(Order = 2)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int StepID { get; set; }
 
-        public int EmployeeID { get; set; }
-
-        public virtual Employee Employee { get; set; }
+        public virtual Product Product { get; set; }
 
         public virtual Step Step { get; set; }
-
-        public virtual Tag Tag { get; set; }
     }
 }
