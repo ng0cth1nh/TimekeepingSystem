@@ -9,7 +9,8 @@ namespace Model.EntityFramework
     [Table("CompleteTag")]
     public partial class CompleteTag
     {
-        public int ID { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int? ID { get; set; }
 
         [Key]
         [Column(Order = 0)]

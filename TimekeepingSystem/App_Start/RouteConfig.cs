@@ -20,6 +20,17 @@ namespace TimekeepingSystem
              defaults: new { controller = "RecordAttendance", action = "Index" }
             );
 
+            routes.MapRoute(
+             name: "ViewAttendance",
+             url: "view-attendance",
+             defaults: new { controller = "ViewAttendance", action = "Index" }
+            );
+
+            routes.MapRoute(
+             name: "ViewSalary",
+             url: "view-salary",
+             defaults: new { controller = "ViewSalary", action = "Index" }
+            );
 
             routes.MapRoute(
                name: "Login",

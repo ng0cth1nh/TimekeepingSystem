@@ -135,6 +135,8 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\LogoutController.cs" />
     <Compile Include="Controllers\RecordAttendanceController.cs" />
+    <Compile Include="Controllers\ViewAttendanceController.cs" />
+    <Compile Include="Controllers\ViewSalaryController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -178,6 +180,7 @@
     <Content Include="Assets\libs\css\index.css" />
     <Content Include="Assets\libs\css\style.css" />
     <Content Include="Assets\libs\css\tag.css" />
+    <Content Include="Assets\libs\css\viewAttendance.css" />
     <Content Include="Assets\libs\js\dashboard-ecommerce.js" />
     <Content Include="Assets\libs\js\dashboard-finance.js" />
     <Content Include="Assets\libs\js\dashboard-influencer.js" />
@@ -188,6 +191,8 @@
     <Content Include="Assets\libs\js\main-js.js" />
     <Content Include="Assets\libs\js\recordAttend.js" />
     <Content Include="Assets\libs\js\tag.js" />
+    <Content Include="Assets\libs\js\viewAttendance.js" />
+    <Content Include="Assets\libs\js\viewSalary.js" />
     <Content Include="Assets\vendor\bootstrap-colorpicker\%40claviska\jquery-minicolors\jquery.minicolors.css" />
     <Content Include="Assets\vendor\bootstrap-colorpicker\%40claviska\jquery-minicolors\jquery.minicolors.min.js" />
     <Content Include="Assets\vendor\bootstrap-colorpicker\%40claviska\jquery-minicolors\jquery.minicolors.png" />
@@ -606,6 +611,8 @@
     <Content Include="Views\Logout\Index.cshtml" />
     <Content Include="Views\RecordAttendance\Index.cshtml" />
     <Content Include="Views\AddTag\Index.cshtml" />
+    <Content Include="Views\ViewAttendance\Index.cshtml" />
+    <Content Include="Views\ViewSalary\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace TimekeepingSystem.Controllers
 {
@@ -81,5 +82,115 @@ namespace TimekeepingSystem.Controllers
                 }, JsonRequestBehavior.AllowGet);
             }
         }
+
+        //[HttpPost]
+        //public JsonResult SaveCompleteTag(string record)
+        //{
+        //    JavaScriptSerializer serializer = new JavaScriptSerializer();
+
+        //    // conver from string to object
+        //    CompleteTag completeTag = serializer.Deserialize<CompleteTag>(record);
+
+
+        //    bool status = false;
+        //    string message = string.Empty;     
+        //    try
+        //    {
+        //        completeTag.ID = null;
+        //        completeTag.Date = DateTime.Now;
+        //        context.CompleteTags.Add(completeTag);
+        //        context.SaveChanges();
+        //        status = true;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        status = false;
+        //        message = ex.Message;
+        //    }
+
+        //    return Json(new
+        //    {
+        //        status = status,
+        //        message = message
+        //    });
+        //}
+
+        [HttpPost]
+        public JsonResult SaveTag(string completeTagDetails,string completeTags)
+        {
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+
+            // conver from string to object
+            CompleteTag completeTag = serializer.Deserialize<CompleteTag>(completeTags);
+            List<CompleteTagDetail> completeTagDetail = serializer.Deserialize<List<CompleteTagDetail>>(completeTagDetails);
+
+            bool status = false;
+            string message = string.Empty;
+
+          
+
+            try
+            {
+                completeTag.ID = null;
+                completeTag.Date = DateTime.Now;
+                context.CompleteTags.Add(completeTag);
+
+                foreach (var ctd in completeTagDetail)
+                {
+                    ctd.ID = null;
+                    context.CompleteTagDetails.Add(ctd);
+                }
+
+                context.SaveChanges();
+
+                status = true;
+            }
+            catch (Exception ex)
+            {
+                status = false;
+                message = ex.Message;
+            }
+
+            return Json(new
+            {
+                status = status,
+                message = message
+            });
+        }
+
+    //    [HttpPost]
+    //    public JsonResult SaveCompleteTagDetail(string record)
+    //    {
+    //        JavaScriptSerializer serializer = new JavaScriptSerializer();
+
+    //        // conver from string to object
+    //        List<CompleteTagDetail> completeTagDetails = serializer.Deserialize<List<CompleteTagDetail>>(record);
+
+
+    //        bool status = false;
+    //        string message = string.Empty;
+        
+    //        foreach (var completeTagDetail in completeTagDetails)
+    //        {
+    //            completeTagDetail.ID = null;
+    //            context.CompleteTagDetails.Add(completeTagDetail);
+    //        }
+    //        try
+    //        {
+    //            context.SaveChanges();
+    //            status = true;
+    //        }
+    //        catch (Exception ex)
+    //        {
+    //            status = false;
+    //            message = ex.Message;
+    //        }
+
+    //        return Json(new
+    //        {
+    //            status = status,
+    //            message = message
+    //        });
+    //    }
     }
 }

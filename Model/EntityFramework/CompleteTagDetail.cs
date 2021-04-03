@@ -10,7 +10,7 @@ namespace Model.EntityFramework
     public partial class CompleteTagDetail
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { get; set; }
+        public int? ID { get; set; }
 
         [Key]
         [Column(Order = 0)]

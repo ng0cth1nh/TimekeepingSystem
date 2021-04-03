@@ -54,7 +54,7 @@ function update() {
 
 
 function init() {
-    console.log("init");
+    // console.log("init");
     $(".step").on("change paste keyup", function () {
         let item = $(this);
         if (item.val() !== "") {
@@ -79,17 +79,24 @@ function init() {
             item.parents("td").next().text("");
         }
     });
+
+
+
 }
 
 $("#btnSubmit").on("click", function () {
-    if (submitCompleteTag() && submitCompleteTagDetail()) {
-        alert("Save Successfully");
-    } else {
-        alert("Save Failed");
-    };
+    submitTag();
 });
 
-function submitCompleteTagDetail() {
+function submitTag() {
+
+    let completeTag = {
+        TagID: parseInt($("#tag-input").val(), 10),
+        Table: $("#table").val(),
+        ProductID: parseInt($("#productID").text(), 10),
+        Quantity: parseInt($("#quantity").text(), 10),
+        CompleteQuantity: parseInt($("#complete").val(), 10)
+    }
 
     let steps = $(".step");
     let arr = [];
@@ -98,61 +105,63 @@ function submitCompleteTagDetail() {
         let completeTagDetail = {
             TagID: parseInt($("#tag-input").val(), 10),
             StepID: parseInt($(`.step:eq(${i})`).parent("td").prev().text(), 10),
-            EmployeeID: parseInt($(`.step:eq(${i})`).val(),10)
+            EmployeeID: parseInt($(`.step:eq(${i})`).val(), 10)
         }
         arr.push(completeTagDetail);
     }
 
     $.ajax({
-        url: '/AddTag/SaveCompleteTagDetail',
+        url: '/AddTag/SaveTag',
         data: {
-            record: JSON.stringify(completeTag)
+            completeTagDetails: JSON.stringify(arr),
+            completeTags: JSON.stringify(completeTag)
         },
         type: 'POST',
         dataType: 'json',
         success: function (response) {
             if (response.status == true) {
-                return true;
+                alert("Submit Successfully!");
+                // return true;
             } else {
-                return false;
+                alert(response.message);
             }
         },
         error: function (err) {
             console.log(err);
+            //return false;
         }
     });
 
 }
 
-function submitCompleteTag() {
-    let completeTag = {
-        TagID: parseInt($("#tag-input").val(), 10),
-        Table: $("#table").val(),
-        ProductID: parseInt($("#productID").text(), 10),
-        Quantity: parseInt($("#quantity").text(), 10),
-        CompleteQuantity: parseInt($("#complete").text(), 10)
-    }
+//function submitCompleteTag() {
+//    let completeTag = {
+//        TagID: parseInt($("#tag-input").val(), 10),
+//        Table: $("#table").val(),
+//        ProductID: parseInt($("#productID").text(), 10),
+//        Quantity: parseInt($("#quantity").text(), 10),
+//        CompleteQuantity: parseInt($("#complete").val(), 10)
+//    }
 
-    $.ajax({
-        url: '/AddTag/SaveCompleteTag',
-        data: {
-            record: JSON.stringify(completeTag)
-        },
-        type: 'POST',
-        dataType: 'json',
-        success: function (response) {
-            if (response.status == true) {
-                //$("#btnSubmit").text("Update");
-                //alert("Submit Successfully!");
-                return true;
-            } else {
-                //alert(response.message);
-                return false;
-            }
-        },
-        error: function (err) {
-            console.log(err);
-        }
-    });
+//    $.ajax({
+//        url: '/AddTag/SaveCompleteTag',
+//        data: {
+//            record: JSON.stringify(completeTag)
+//        },
+//        type: 'POST',
+//        dataType: 'json',
+//        success: function (response) {
+//            if (response.status == true) {
+//                alert("dome");
+//                return true;
+//            } else {
+//                alert(response.message);
+//            }
+//        },
+//        error: function (err) {
+//            console.log(err);
+//            return false;
+//        }
+//    });
 
-}
+//}

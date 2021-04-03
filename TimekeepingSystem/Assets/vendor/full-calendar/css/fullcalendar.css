@@ -206,7 +206,7 @@ hr.fc-divider {
 /* Tables
 --------------------------------------------------------------------------------------------------*/
 .fc table {
-  width: 100%;
+
   box-sizing: border-box;
   /* fix scrollbar issue in firefox */
   table-layout: fixed;
@@ -598,7 +598,13 @@ TODO: more distinction between this file and common.css
 */
 /* Colors
 --------------------------------------------------------------------------------------------------*/
-.fc-unthemed th{padding: 10px; color: #3d405c; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;}
+.fc-unthemed th {
+    padding: 10px;
+    color: #cccdda;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
 .fc-unthemed th,
 .fc-unthemed td,
 .fc-unthemed thead,
