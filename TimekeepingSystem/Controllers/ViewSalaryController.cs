@@ -34,48 +34,63 @@ namespace TimekeepingSystem.Controllers
             var firstDayOfMonth = new DateTime(yearInt, monthInt, 1);
             var thatMonth = context.AttendanceMonthlies.FirstOrDefault(d => d.FromDate == firstDayOfMonth);
 
-
-            //using (var ctx = new SchoolDBEntities())
-            //{
-            //    //Get student name of string type
-            //    string studentName = ctx.Database.SqlQuery<string>("Select studentname from Student where studentid=1")
-            //                            .FirstOrDefault();
-
-            //    //or
-            //    string studentName = ctx.Database.SqlQuery<string>("Select studentname from Student where studentid=@id", new SqlParameter("@id", 1))
-            //                            .FirstOrDefault();
-            //}
-
-            var list1 = (from e in context.Employees
-                         join et in context.EmployeeTypes
+            var list1 =
+                          from e in context.Employees
+                          join et in context.EmployeeTypes
                           on e.TypeID equals et.ID
-                         join er in context.EmployeeRoles
-                         on e.RoleID equals er.ID
-                         join ad in context.AttendanceDailies
-                         on e.ID equals ad.EmployeeID
-                         where ad.MonthID == thatMonth.ID && ad.isPresent == true && e.TypeID == 1
-                        // group new { e, et, er } by new { e.ID, e.Name } into g
-                         select new
-                         {
-                             ID = e.ID,
-                             Name = e.Name,
-                             Type = et.Name,
-                             Role = er.Name,
-                             Num = 1
-                         }).ToList();
-
-            //string Sql = "select e.ID,e.Name,et.Name,er.Name,num = COUNT(e.ID) from Employee e\n" +
-            //               "join EmployeeType et on et.ID = e.TypeID\n" +
-            //               "join EmployeeRole er on er.ID = e.RoleID\n" +
-            //               "join AttendanceDaily ad on e.ID = ad.EmployeeID\n" +
-            //               "where ad.MonthID = @mid and ad.isPresent = 1 and e.TypeID = 1\n" +
-            //              "group by e.ID,e.Name,et.Name,er.Name";
+                          join er in context.EmployeeRoles
+                          on e.RoleID equals er.ID
+                          join ad in context.AttendanceDailies
+                          on e.ID equals ad.EmployeeID
+                          where ad.MonthID == thatMonth.ID && ad.isPresent == true && e.TypeID == 1
+                          group new { e, et, er, ad }
+                          by new { e.ID, e.Name, Type = et.Name, Role = er.Name } into g
+                          select new
+                          {
+                              ID = g.Key.ID,
+                              Name = g.Key.Name,
+                              Role = g.Key.Role,
+                              Type = g.Key.Type,
+                              Salary = g.Count() * 200000
+                          };
 
 
-            //var list = context.Database.SqlQuery<string>(Sql, new SqlParameter("@mid", thatMonth.ID)).ToList();
+            var list2 =
+                        from ctd in context.CompleteTagDetails
+                        join ct in context.CompleteTags
+                        on ctd.TagID equals ct.TagID
+                        join s in context.Steps
+                        on ctd.StepID equals s.ID
+                        join e in context.Employees
+                        on ctd.EmployeeID equals e.ID
+                        join et in context.EmployeeTypes
+                        on e.TypeID equals et.ID
+                        join er in context.EmployeeRoles
+                        on e.RoleID equals er.ID
+                        where ct.Date <= thatMonth.ToDate && ct.Date >= thatMonth.FromDate
+                        group new { ctd, ct, s, e, et, er }
+                        by new
+                        {
+                            e.ID,
+                            e.Name,
+                            Type = et.Name,
+                            Role = er.Name
+                        } into g
+                        select new
+                        {
+                            ID = g.Key.ID,
+                            Name = g.Key.Name,
+                            Role = g.Key.Role,
+                            Type = g.Key.Type,
+                            Salary = g.Sum(k => (k.s.Price * k.ct.CompleteQuantity))
+                        };
+
+
+            var list = list1.Concat(list2).ToList();
+
             return Json(new
             {
-                data = list1,
+                data = list,
                 status = true,
             }, JsonRequestBehavior.AllowGet);
         }

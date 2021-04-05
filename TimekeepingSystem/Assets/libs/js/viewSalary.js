@@ -23,7 +23,7 @@ function update() {
                             Name: item.Name,
                             Role: item.Role,
                             Type: item.Type,
-                            Class: "even",
+                            Salary: new Intl.NumberFormat().format(item.Salary)
                         });
                     } else {
                         html += Mustache.render(template, {
@@ -31,7 +31,7 @@ function update() {
                             Name: item.Name,
                             Role: item.Role,
                             Type: item.Type,
-                            Class: "odd",
+                            Salary: new Intl.NumberFormat().format(item.Salary)
                         });
                     }
 
